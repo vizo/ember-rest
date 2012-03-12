@@ -174,7 +174,7 @@ Ember.Resource = Ember.Object.extend({
    Is this a new resource?
   */
   isNew: function() {
-    return (this._id() === undefined);
+    return (this._recordId() === undefined);
   },
 
   /**
@@ -185,7 +185,7 @@ Ember.Resource = Ember.Object.extend({
   */
   _resourceUrl: function() {
     var url = this.resourceUrl,
-        id = this._id();
+        id = this._recordId();
 
     if (id !== undefined)
       url += '/' + id;
@@ -198,8 +198,8 @@ Ember.Resource = Ember.Object.extend({
 
     The id for this resource.
   */
-  _id: function() {
-    return this.get('id');
+  _recordId: function() {
+    return this.get('id') || this.get('_id');
   }
 });
 
